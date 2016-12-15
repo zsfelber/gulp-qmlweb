@@ -38,3 +38,8 @@ gulp.task('scripts', function() {
 ```
 
 This will compile all your QML sources (qml and javascript) and concatenate them in the `/dist/qrc.js` file.
+
+
+## This Fork/Branch
+
+Intended to fix parse errors (like that of readonly property) and maybe another simple bugs which prevent my actual qml model to be compiled and used.
