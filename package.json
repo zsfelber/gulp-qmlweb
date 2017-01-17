@@ -12,6 +12,7 @@
     "event-stream": "^3.3.2",
     "gulp-util": "^3.0.7",
     "qmlweb-parser": "^0.2.0",
+    "qmlweb": "^0.2.0",
     "uglify-js": "^2.6.1"
   }
 }
