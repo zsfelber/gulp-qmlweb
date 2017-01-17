@@ -1,7 +1,7 @@
 var es = require('event-stream');
 var gutil = require('gulp-util');
 var parser = require('qmlweb-parser');
-var qmlweb = require('qmlweb');
+var QmlWeb = require('qmlweb');
 
 module.exports = function (opt) {
   opt = opt || {};
@@ -17,13 +17,13 @@ module.exports = function (opt) {
     var src;
     var str      = file.contents.toString('utf8');
     var dest     = gutil.replaceExtension(file.path, ".js");
-    var gulpPath = __dirname.split('/');
-        gulpPath = gulpPath.splice(0, gulpPath.length - 2).join('/') + '/';
+    //var gulpPath = __dirname.split('/');
+    //    gulpPath = gulpPath.splice(0, gulpPath.length - 2).join('/') + '/';
     var path     = file.path;
 
-    if (file.path.indexOf(gulpPath) === 0) {
-      path = path.substr(gulpPath.length, path.length);
-    }
+    //if (file.path.indexOf(gulpPath) === 0) {
+    //  path = path.substr(gulpPath.length, path.length);
+    //}
 
     try {
       if (file.path.match(/\.qml$/) != null)
@@ -36,17 +36,18 @@ module.exports = function (opt) {
       if (opt.parseOnly) {
           src = "QmlWeb.qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
       } else {
-          if (pathFilter.master) {
-              src = qmlweb.serializeParserFuncs();
-              pathFilter.master = undefined;
+          if (!pathFilter.started) {
+              src = QmlWeb.serializeParserFuncs();
+              pathFilter.started = true;
           } else {
               src = "";
           }
 
-          data = qmlweb.serialize(data);
+          data = QmlWeb.serialize(data);
           src += "QmlWeb.qrc['" + pathFilter(path) + "'] = " + data + ';';
       }
     } catch (err) {
+      console.log(err.stack);
       return this.emit('error', new Error(file.path + ': ' + err));
     }
 
