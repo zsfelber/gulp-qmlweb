@@ -1,6 +1,7 @@
 var es = require('event-stream');
 var gutil = require('gulp-util');
 var parser = require('qmlweb-parser');
+var qmlweb = require('qmlweb');
 
 module.exports = function (opt) {
   opt = opt || {};
@@ -31,11 +32,24 @@ module.exports = function (opt) {
         data = parser.qmlweb_jsparse(str);
       else
         data = str;
+
+      if (opt.parseOnly) {
+          src = "QmlWeb.qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
+      } else {
+          if (pathFilter.master) {
+              src = qmlweb.serializeParserFuncs();
+              pathFilter.master = undefined;
+          } else {
+              src = "";
+          }
+
+          data = qmlweb.serialize(data);
+          src += "QmlWeb.qrc['" + pathFilter(path) + "'] = " + data + ';';
+      }
     } catch (err) {
       return this.emit('error', new Error(file.path + ': ' + err));
     }
 
-    src = "QmlWeb.qrc['" + pathFilter(path) + "'] = " + JSON.stringify(data) + ';';
 
     file.contents = new Buffer(src);
     file.path = dest;
