@@ -44,7 +44,7 @@ module.exports = function (opt) {
           }
 
           data = QmlWeb.serialize(data);
-          src += "QmlWeb.qrc['" + pathFilter(path) + "'] = " + data + ';';
+          src += data.decl+"QmlWeb.qrc['" + pathFilter(path) + "'] = " + data.body + ';';
       }
     } catch (err) {
       console.log(err.stack);
