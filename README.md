@@ -106,4 +106,4 @@ QmlWeb.addQrc("tradepracticer/base", "ButtonModel.qml", {
 });
 ```
 
-Minimized form is now smaller than original qmls, and it uses the original implementation (QMLMetaElement, QMLMethod,..) so it is also faster to parse at load.
+Minimized form is now smaller than original qmls, and it uses the original internal implementation (provided by convertToEngine : QMLMetaElement, QMLMethod,..) so it is also faster to parse at load.
