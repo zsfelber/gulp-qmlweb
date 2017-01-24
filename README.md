@@ -51,7 +51,7 @@ Understand my qmlweb-parser extensions:
 Changed output format to a much more logical (as-intended vs totally bad) form:
 OLD:
 ```js
-QmlWeb.addQrc("tradepracticer/base", "ButtonModel.qml", ["toplevel", [
+QmlWeb.qrc["tradepracticer/base/ButtonModel.qml"] = ["toplevel", [
         ["qmlimport", "QtQuick", 2.1, "", true],
         ["qmlimport", "biz.greenzone", 1, "", true]
     ],
@@ -72,7 +72,7 @@ QmlWeb.addQrc("tradepracticer/base", "ButtonModel.qml", ["toplevel", [
             ]
         ], "function click() {\n        if (enabled) {\n            clicked();\n        }\n    }\n"]
     ]]
-]);
+];
 ```
 
 NEW:
