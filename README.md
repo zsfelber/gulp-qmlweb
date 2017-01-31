@@ -45,8 +45,10 @@ This will compile all your QML sources (qml and javascript) and concatenate them
 Intended to fix parse errors (like that of readonly property) and maybe another simple bugs which prevent my actual qml model to be compiled and used.
 
 Added:
-Understand my qmlweb-parser extensions:
+Understand my [@zsfelber/qmlweb-parser] extensions:
 [readonly]  [list<xxx> templates]   [var xxx = {"aaa:" : <expression>}  json like var property syntax ]
+
+See also [@zsfelber/qmlweb]
 
 Changed output format to a much more logical (as-intended vs totally bad) form:
 OLD:
