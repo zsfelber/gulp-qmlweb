@@ -40,8 +40,8 @@ module.exports = function (opt) {
           src = 'QmlWeb.addQrc("' + path.join('/') + '", "' + lasttag + '", ' + JSON.stringify(data) + ');';
       } else {
           if (!pathFilter.started) {
-              src = QmlWeb.serializeParserInit();
               pathFilter.started = true;
+              src = "var _;";
           } else {
               src = "";
           }
