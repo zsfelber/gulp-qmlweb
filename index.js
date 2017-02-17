@@ -33,7 +33,7 @@ module.exports = function (opt) {
       else
         data = str;
 
-      path = pathFilter(path).split(/\//);
+      path = pathFilter(path).split(/[/]/);
       var lasttag = path.pop();
 
       if (opt.parseOnly) {
