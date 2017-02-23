@@ -36,7 +36,7 @@ module.exports = function (opt) {
       path = pathFilter(path).split(/[/]/);
 
       if (opt.parseOnly) {
-          src = 'QmlWeb.addQrc("' + path.join('/') + '", ' + JSON.stringify(data) + ');';
+          src = 'QmlWeb.addQrc("qrc:/' + path.join('/') + '", ' + JSON.stringify(data) + ');';
       } else {
           if (!pathFilter.started) {
               pathFilter.started = true;
@@ -46,7 +46,7 @@ module.exports = function (opt) {
           }
 
           data = QmlWeb.serialize(data);
-          src += data.decl+'QmlWeb.addQrc("' + path.join('/') + '", ' + data.body + ');';
+          src += data.decl+'QmlWeb.addQrc("qrc:/' + path.join('/') + '", ' + data.body + ');';
       }
     } catch (err) {
       console.log(err.stack);
