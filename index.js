@@ -34,10 +34,9 @@ module.exports = function (opt) {
         data = str;
 
       path = pathFilter(path).split(/[/]/);
-      var lasttag = path.pop();
 
       if (opt.parseOnly) {
-          src = 'QmlWeb.addQrc("' + path.join('/') + '", "' + lasttag + '", ' + JSON.stringify(data) + ');';
+          src = 'QmlWeb.addQrc("' + path.join('/') + '", ' + JSON.stringify(data) + ');';
       } else {
           if (!pathFilter.started) {
               pathFilter.started = true;
@@ -47,7 +46,7 @@ module.exports = function (opt) {
           }
 
           data = QmlWeb.serialize(data);
-          src += data.decl+'QmlWeb.addQrc("' + path.join('/') + '", "' + lasttag + '", ' + data.body + ');';
+          src += data.decl+'QmlWeb.addQrc("' + path.join('/') + '", ' + data.body + ');';
       }
     } catch (err) {
       console.log(err.stack);
